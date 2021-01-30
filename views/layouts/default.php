@@ -15,24 +15,32 @@
                         </div>
                     </div>
                 </div>
-                <table class="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Name</th>
-                            <th>Country</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php foreach($climbingPlaces as $place) { ?>
-                        <tr>
-                            <td><?php echo $place->getId(); ?></td>
-                            <td><?php echo $place->getName(); ?></td>
-                            <td><?php echo $place->getCountry(); ?></td>
-                        </tr>
-                    <?php } ?>
-                    </tbody>
-                </table>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Country</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php if ($total > 0) { ?>
+                            <?php foreach($climbingPlaces as $place) { ?>
+                                <tr>
+                                    <td><?php echo $place->getId(); ?></td>
+                                    <td><?php echo $place->getName(); ?></td>
+                                    <td><?php echo $place->getCountry(); ?></td>
+                                </tr>
+                            <?php } ?>
+                        <?php } else { ?>
+                            <tr>
+                                <td colspan="3" class="noresults">No results</td>
+                            </tr>
+                        <?php } ?>
+                        </tbody>
+                    </table>
+
+
                 <div class="clearfix">
                     <div class="hint-text">Total: <b><?php echo $total; ?></b> entries</div>
                 </div>

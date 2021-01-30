@@ -20,25 +20,26 @@ final class ClimbingPlacesController
         $this->viewController = new ViewController();
     }
 
-    /**
-     * @throws JsonException
-     */
     public function index(): void
     {
-        $climbingPlaces = $this->dataService->getClimbingPlaces();
-        $this->viewController->render(
-            'default',
-            ['climbingPlaces' => $climbingPlaces, 'total' => count($climbingPlaces)]
-        );
+        $climbingPlaces = $this->tryGetClimbingPlaces();
+        $total = count($climbingPlaces);
+        $this->viewController->render('default', ['climbingPlaces' => $climbingPlaces, 'total' => $total]);
     }
 
-    /**
-     * @param array $postData
-     * @throws JsonException
-     */
     public function store(array $postData): void
     {
         $place = ClimbingPlace::createFromPostData($postData);
         $this->dataService->storeClimbingPlace($place);
+    }
+
+    private function tryGetClimbingPlaces(): array
+    {
+        try {
+            return $this->dataService->getClimbingPlaces();
+        } catch (JsonException $jsonException) {
+            // TODO: Log error
+            return [];
+        }
     }
 }
