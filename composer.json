@@ -1,0 +1,33 @@
+{
+    "name": "nplasencia/climbingapp",
+    "description": "Domain money for reloaded project",
+    "type": "project",
+    "license": "MIT",
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "authors": [
+        {
+            "name": "Nauzet Plasencia",
+            "email": "nauzet.plasencia.cruz@gmail.com"
+        }
+    ],
+    "require": {
+        "ext-json": "*",
+        "php": "~7.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nplasencia\\ClimbingApp\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Nplasencia\\ClimbingApp\\Tests\\": "tests/Unit/"
+        }
+    }
+}
