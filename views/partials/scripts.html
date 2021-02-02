@@ -1,0 +1,44 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+
+<script>
+    var vmPM = new Vue({
+        el: '#addClimbingPlaceModal',
+        data: {
+            id: '',
+            name: '',
+            country: ''
+        },
+        methods: {
+            isFormValid: function () {
+                return this.id != '' && this.name != '' && this.country != '';
+            },
+            createClimbingPlace: function () {
+                axios.post('/index.php', {
+                    id: this.id,
+                    name: this.name,
+                    country: this.country
+                });
+
+                vmContent.total = vmContent.total + 1;
+                vmContent.climbingPlaces.push({
+                    id: this.id,
+                    name: this.name,
+                    country: this.country
+                });
+
+                this.id = '';
+                this.name = '';
+                this.country='';
+            }
+        }
+    })
+
+    var vmContent = new Vue({
+        el: '#content',
+        data: {
+            climbingPlaces: <?php echo $climbingPlaces; ?>,
+            total: <?php echo $total ?>,
+        }
+    })
+</script>

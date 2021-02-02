@@ -24,7 +24,7 @@ final class ClimbingPlacesController
     {
         $climbingPlaces = $this->tryGetClimbingPlaces();
         $total = count($climbingPlaces);
-        $this->viewController->render('default', ['climbingPlaces' => $climbingPlaces, 'total' => $total]);
+        $this->viewController->render('default', ['climbingPlaces' => json_encode($climbingPlaces), 'total' => $total]);
     }
 
     public function store(array $postData): void

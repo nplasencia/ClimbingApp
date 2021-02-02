@@ -9,7 +9,8 @@ require '../vendor/autoload.php';
 $controller = new ClimbingPlacesController();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $controller->store($_POST);
+    $response = json_decode(file_get_contents('php://input'), true);
+    $controller->store($response);
 }
 
 $controller->index();
